@@ -1,0 +1,5 @@
+/*
+Import from MyHeritage using psql meta-command.
+*/
+
+\copy raw_data_my_heritage from 'C:/Users/justi/OneDrive - n a/Church/Family History/DNA/dna-db/data-ready-to-import/MyHeritage.csv' WITH (FORMAT CSV, header, encoding 'UTF8') where dna_match_id is not null

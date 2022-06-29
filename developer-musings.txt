@@ -1,0 +1,51 @@
+- Only put people into the person table when I know they have more than one dna_test (and I know what those tests are).  This will make it easier to link multiple tests to the same person. Then, I could write a function that given a username of someone on one site, returns all of their usernames on other sites.
+
+- I should insert into dna_test first. Optionally, records in dna_test
+  can be associated with records in person (being sure to update
+  dna_test with person_id).
+
+- Each person with each company has a preferred kit with which new
+  matches should be associated.  New matches should not be linked
+  to a kit that is not preferred.
+
+- The kit # that should be entered for tests from MyHeritage should
+  be that 8-digit number found in the csv file of downloaded matches.
+  For example, for a DNA Match ID of
+  D-FDF7YB1D-95D4-403B-A9E4-37AAE9DFF03D-D-54KBH588-A2D3-45D3-AA6F-AC910ACF5050
+  I should enter my kit as FDF7YB1D and the other person's kit as 54KBH588.
+
+- Workflow for importing data from MyHeritage:
+1.) Download csv files for each home person.
+2.) Rename the first (next) csv as MyHeritage.csv (Doing this
+	saving within Excel seems to work best.)
+3.) Run psql \copy meta-command to import data into table in database.
+4.) Run procedure import_my_heritage.
+    
+5.) Repeat steps 2-4 for each home person's data.
+
+- I don't think Ancestry and FTDNA deserve a priority import process.
+  I can get better information by going on their websites.
+
+- There are different ways that a new record could be inserted
+  into dna_test. 
+	1. It could be from a downloaded list of matches 
+	   (kit_is_favorite_with_company will be set to default of 0)
+	2. It could be for a new home person.
+	   (kit_is_favorite_with_company should be supplied by
+           user as part of this process. New home people will
+	   have kit numbers that have never been seen before.)
+
+  Similarly, there are different ways that a new record could be 
+  inserted into person.
+	1. It could be for a new home person 
+	   (Email should be supplied. Person should be associated
+           with a DNA test later.)
+	2. It could be for a person with a kit from 
+	   MyHeritage and a kit from 23andMe and we
+ 	   are trying to show that these kits belong to the same person
+	   (Email could be null.)
+
+
+
+     
+    

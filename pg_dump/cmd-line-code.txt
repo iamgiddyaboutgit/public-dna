@@ -1,0 +1,18 @@
+Run this using the correct directories to dump the dna database.
+
+C:\Program Files\PostgreSQL\14\bin>pg_dump -U admin --no-owner dna > "C:\Users\justi\OneDrive - n a\Church\Family History\DNA\dna-db\dna\pg_dump\dna.txt"
+
+The next part is about restoring the dump.
+Connect to the default database.
+
+C:\Program Files\PostgreSQL\14\bin>psql -U admin --dbname=postgres
+
+Make the database. On my system, this sets the locale to C because
+I think I have that as the default for new databases on my server.
+
+postgres=# create database dna owner admin template template0 encoding UTF8;
+
+After making the database, quit psql and run this from the command line
+with the correct directories.
+
+C:\Program Files\PostgreSQL\14\bin>psql -U admin --set ON_ERROR_STOP=on dna < "C:\Users\justi\OneDrive - n a\Church\Family History\DNA\dna-db\dna\pg_dump\dna.txt"

@@ -1,0 +1,5 @@
+/*
+Import from 23andMe using psql meta-command.
+*/
+
+\copy raw_data_23_and_me from 'C:/Users/justi/OneDrive - n a/Church/Family History/DNA/dna-db/data-ready-to-import/23andMe.csv' WITH (FORMAT CSV, header, encoding 'UTF8') where chromosome_number <> ''
