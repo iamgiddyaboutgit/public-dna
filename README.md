@@ -1,4 +1,4 @@
-# dna
+# DNA
 
 This project was started to make genetic genealogy easier.  In particular, 
 I needed a free and easy way to store information on not only my
